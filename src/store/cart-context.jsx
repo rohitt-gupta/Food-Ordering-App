@@ -1,6 +1,8 @@
-import React from 'react';
+import React from "react";
 
 /** 
+ * 
+ * STEP NO 1.
  *It will create a global object named CartContext.
  *we can access this cartContext using CartContext.provider
  *in the component where we will update these states.
@@ -12,14 +14,14 @@ import React from 'react';
  *cctx.totalAmount
 */
 
-// provides the data by context items 
+// provides the data by context items
 //  and updates with the use of provider function
 
 const CartContext = React.createContext({
 	items: [],
-	totalamount: 0,
-	additem: (item) => { },
-	removeItem: (id) => { },
+	totalAmount: 0,
+	additem: (item) => {},
+	removeItem: (id) => {},
 });
 
 export default CartContext;
