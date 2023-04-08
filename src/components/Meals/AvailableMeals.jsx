@@ -5,14 +5,22 @@ import MealItem from "./MealItem/MealItem";
 
 const AvailableMeals = () => {
 	const [Meals, setMeals] = useState([]);
+	const [isLoading, setIsLoading] = useState(true);
+	const [httpError, setHttpError] = useState();
 	useEffect(() => {
-		fetchMeals();
+		fetchMeals().catch((error) => {
+			setIsLoading(false);
+			setHttpError(error.message);
+		});
 	}, []);
 
 	const fetchMeals = async () => {
 		const response = await fetch(
 			"https://omnifood-8fb3e-default-rtdb.firebaseio.com/meals.json"
 		);
+		if (!response.ok) {
+			throw new Error("something went wrong!");
+		}
 		const responseData = await response.json();
 		// console.log(responseData);
 
@@ -26,7 +34,23 @@ const AvailableMeals = () => {
 			});
 		}
 		setMeals(loadedMeals);
+		setIsLoading(false);
 	};
+	if (isLoading) {
+		return (
+			<section className={classes.MealsLoading}>
+				<p>Loading...</p>
+			</section>
+		);
+	}
+
+	if (httpError) {
+		return (
+			<section className={classes.MealsError}>
+				<p>{httpError}</p>
+			</section>
+		);
+	}
 
 	const mealsList = Meals.map((meal) => (
 		<MealItem
