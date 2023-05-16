@@ -16,7 +16,7 @@ const AvailableMeals = () => {
 
 	const fetchMeals = async () => {
 		const response = await fetch(
-			"https://omnifood-8fb3e-default-rtdb.firebaseio.com/meals.json"
+			"https://omnifood-97c02-default-rtdb.firebaseio.com/meals.json"
 		);
 		if (!response.ok) {
 			throw new Error("something went wrong!");

@@ -26,7 +26,7 @@ const Cart = (props) => {
 
 	const submitorderHandler = (userData) => {
 		setIsSubmitting(true);
-		fetch("https://omnifood-8fb3e-default-rtdb.firebaseio.com/orders.json", {
+		fetch("https://omnifood-97c02-default-rtdb.firebaseio.com/meals.json", {
 			method: "POST",
 			body: JSON.stringify({
 				user: userData,
